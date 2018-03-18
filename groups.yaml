@@ -1,0 +1,147 @@
+### VIEWS ###
+default_view:
+  view: yes
+  entities:
+    ### DEVICE TRACKERS ###
+    - device_tracker.adam
+    - device_tracker.bradley
+    - device_tracker.dave
+    - device_tracker.ryan
+    - device_tracker.wes
+    ### BINARY SENSORS ###
+    - binary_sensor.iss
+    - binary_sensor.door_window_sensor_158d0001a20d43
+    - binary_sensor.door_window_sensor_158d0001d685be
+    ### MEDIA ###
+    - media_player.roku_yn004n803894
+    - media_player.living_room_chromecast
+    - media_player.basement_chromecast
+    ### GROUPS ###
+    - group.all_lights
+    - group.door_sensors
+    - group.weather
+    - group.climate
+    - group.network_speed
+    - group.network_status
+    ### Climate ###
+    - climate.upstairs
+    - climate.downstairs
+    - input_boolean.some_choice
+
+adam_bedroom:
+  view: yes
+  name: Adam's Room
+  entities:
+    - light.adams_room
+    - light.gateway_light_34ce009097ce
+    - binary_sensor.cube_158d0001107d03
+    - switch.stereo_receiver
+    - switch.box_fan
+    - sensor.tradfri_remote_control
+    - group.adam_media
+    - group.adam_climate
+    - binary_sensor.switch_158d00012108c7
+    - sensor.illumination_34ce009097ce
+    - light.wall
+    - binary_sensor.door_window_sensor_158d0001c1e6d3
+    - light.tv_leds
+    - binary_sensor.motion_sensor_158d0001ddcb31
+    - input_boolean.adam_sleeping
+    - input_boolean.adam_in_room
+    - sensor.adam_indoor_position
+
+### ZONES ###
+zones:
+  name: Zones
+  entities:
+    - binary_sensor.floorplan
+
+### ADAMS ROOM ###
+adam_media:
+  name: Media
+  icon: mdi:music-note
+  entities:
+    - media_player.vizio_smartcast
+    - media_player.adams_tv
+    - media_player.bedroom_home
+
+adam_climate:
+  name: Climate
+  icon: mdi:snowflake
+  entities:
+    - sensor.upstairs_temperature
+    - sensor.upstairs_humidity
+
+### LIGHTS ###
+all_lights:
+  name: All Lights
+  icon: mdi:lightbulb
+  entities:
+    - switch.ryans_room
+    - switch.basement
+    - light.computer_room
+    - switch.swag_lighting
+    - switch.foyer_light
+    - light.adams_room
+    - light.gateway_light_34ce009097ce
+    - switch.christmas_tree
+    - switch.christmas_lights
+    - light.wall
+
+### CLIMATE ###
+climate:
+  name: Climate
+  icon: mdi:snowflake
+  entities:
+    - sensor.upstairs_temperature
+    - sensor.upstairs_humidity
+    - sensor.downstairs_temperature
+    - sensor.downstairs_humidity
+
+### SENSORS ###
+door_sensors:
+  name: Doors
+  icon: mdi:door
+  entities:
+    - binary_sensor.door_window_sensor_158d0001a20d43
+    - binary_sensor.door_window_sensor_158d0001d685be
+    - binary_sensor.door_window_sensor_158d0001ab59ea
+    - binary_sensor.door_window_sensor_158d0001c1ce42
+    - binary_sensor.door_window_sensor_158d0001c1e6d3
+
+### NETWORK ###
+network_speed:
+  name: Network Speed
+  icon: mdi:speedometer
+  entities:
+  - sensor.speedtest_ping
+  - sensor.speedtest_download
+  - sensor.speedtest_upload
+
+network_status:
+  name: Network Status
+  entities:
+  - sensor.google_wifi_status
+  - sensor.google_wifi_local_ip
+  - sensor.google_wifi_uptime
+  - sensor.google_wifi_last_restart
+  - sensor.google_wifi_current_version
+  - sensor.google_wifi_new_version
+
+### WEATHER ###
+weather:
+  name: Weather
+  entities:
+  - sensor.dark_sky_summary
+  - sensor.dark_sky_temperature
+  - sensor.dark_sky_apparent_temperature
+  - sensor.dark_sky_daily_high_apparent_temperature
+  - sensor.dark_sky_daily_low_apparent_temperature
+  - sensor.dark_sky_humidity
+  - sensor.dark_sky_wind_speed
+  - sensor.dark_sky_cloud_coverage
+  - sensor.dark_sky_wind_bearing
+  - sensor.dark_sky_pressure
+  - sensor.dark_sky_precip_intensity
+  - sensor.dark_sky_precip_probability
+  view: false

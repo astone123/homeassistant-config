@@ -1,0 +1,23 @@
+- platform: tplink
+  host: !secret ryans_room_ip
+  name: Ryan's Room
+- platform: tplink
+  host: !secret basement_ip
+  name: Basement
+- platform: tplink
+  host: !secret swag_lighting_ip
+  name: Swag Lighting
+- platform: tplink
+  host: !secret box_fan_ip
+  name: Box Fan
+- platform: tplink
+  host: !secret stereo_receiver_ip
+  name: Stereo Receiver
+- platform: command_line
+  switches:
+    foyer_light:
+      friendly_name: 'Foyer Lights'
+      command_on: '/home/homeassistant/.homeassistant/switchmate/switchmate.py c9:eb:c6:6d:cf:3f 0D2ED20A switch on'
+      command_off: '/home/homeassistant/.homeassistant/switchmate/switchmate.py c9:eb:c6:6d:cf:3f 0D2ED20A switch off'
+      command_state: '/home/homeassistant/.homeassistant/switchmate/status.sh c9:eb:c6:6d:cf:3f'
+      value_template: '{{ value == "0" }}'

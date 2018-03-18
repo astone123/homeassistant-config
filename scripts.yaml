@@ -1,0 +1,68 @@
+wakeup:
+  alias: Wake Up
+  sequence:
+      - alias: De-activate sleep
+        service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.adam_sleeping
+      - alias: Turn bedroom lights on
+        service: light.turn_on
+        data:
+          entity_id: light.adams_room
+      - delay:
+          seconds: 5
+      - alias: Turn box fan off
+        service: switch.turn_off
+        data:
+          entity_id: switch.box_fan
+      - alias: Good morning
+        service: tts.google_say
+        entity_id: media_player.bedroom_home
+        data:
+          message: 'Good morning, Adam'
+
+goodnight:
+  alias: Good Night
+  sequence:
+    - alias: Turn bedroom lights off
+      service: light.turn_off
+      data:
+        entity_id: light.adams_room
+    - alias: Turn wall off
+      service: light.turn_off
+      data:
+        entity_id: light.wall
+    - alias: Turn TV LEDs off
+      service: light.turn_off
+      data:
+        entity_id: light.tv_leds
+    - alias: Turn box fan on
+      service: switch.turn_on
+      data:
+        entity_id: switch.box_fan
+    - alias: Activate sleep
+      service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.adam_sleeping
+
+play_xbox:
+  alias: Play Xbox
+  sequence:
+    - alias: Turn bedroom lights off
+      service: light.turn_off
+      data:
+        entity_id: light.adams_room
+    - alias: Switch TV to HDMI 1
+      service: media_player.select_source
+      data:
+        entity_id: media_player.vizio_smartcast
+        source: 'HDMI-1'
+    - alias: Turn stereo off
+      service: switch.turn_off
+      data:
+        entity_id: switch.stereo_receiver
+    - alias: Change TV LEDs to white
+      service: light.turn_on
+      data:
+        entity_id: light.tv_leds
+        rgb_color: [255, 255, 255]

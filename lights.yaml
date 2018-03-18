@@ -1,0 +1,11 @@
+- platform: lifx
+
+- platform: aurora
+  host: !secret nanoleaf_adam_host
+  api_key: !secret nanoleaf_api_key
+  name: Wall
+
+- platform: yeelight
+  devices:
+    192.168.86.33:
+      name: TV LEDs

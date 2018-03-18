@@ -1,0 +1,98 @@
+homeassistant:
+  name: Home
+  latitude: !secret home_lat
+  longitude: !secret home_long
+  elevation: !secret home_elevation
+  unit_system: imperial
+  time_zone: America/New_York
+  customize: !include customize.yaml
+
+frontend:
+  extra_html_url:
+    - /local/custom_ui/state-card-floorplan.html
+
+### DEFAULTS ###
+config:
+updater:
+discovery:
+conversation:
+history:
+logbook:
+sun:
+python_script:
+
+logger:
+  default: info
+
+panel_custom:
+  - name: floorplan
+    sidebar_title: Floorplan
+    sidebar_icon: mdi:home
+    url_path: floorplan
+    config: !include floorplan.yaml
+  
+emulated_hue:
+  host_ip: !secret host_ip
+  listen_port: 80
+  expose_by_default: true
+
+tradfri:
+  host: !secret tradfri_ip
+
+recorder:
+  purge_interval: 180
+  purge_keep_days: 7
+
+http:
+  api_password: !secret api_password
+  base_url: !secret base_url
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
+  ip_ban_enabled: true
+  login_attempts_threshold: 3
+
+google_assistant:
+  project_id: !secret google_project_id
+  client_id: !secret google_client_id
+  access_token: !secret google_access_token
+  agent_user_id: !secret google_agent_user_id
+  exposed_domains:
+    - switch
+    - light
+    - group
+    - media_player
+    - fan
+    - script
+
+xiaomi_aqara:
+  gateways:
+    - mac: !secret xiaomi_mac
+      key: !secret xiaomi_key
+      host: !secret xiaomi_host
+
+tts:
+  - platform: google
+
+ecobee:
+  api_key: !secret ecobee_api_key
+
+mqtt:
+  broker: !secret host_ip
+  port: !secret mqtt_port
+  client_id: home-assistant-1
+  username: !secret mqtt_user
+  password: !secret mqtt_password
+
+### INCLUDES ###
+alert: !include alerts.yaml
+notify: !include notifiers.yaml
+media_player: !include media_players.yaml
+group: !include groups.yaml
+automation: !include automations.yaml
+sensor: !include sensors.yaml
+device_tracker: !include device_trackers.yaml
+switch: !include switches.yaml
+binary_sensor: !include binary_sensors.yaml
+light: !include lights.yaml
+script: !include scripts.yaml
+input_boolean: !include input_booleans.yaml

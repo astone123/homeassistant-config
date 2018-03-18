@@ -1,0 +1,98 @@
+### SPEEDTEST ###
+- platform: speedtest
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
+### WEATHER ###
+- platform: darksky
+  api_key: !secret dark_sky_api_key
+  monitored_conditions:
+    - summary
+    - icon
+    - temperature
+    - apparent_temperature
+    - apparent_temperature_max
+    - apparent_temperature_min
+    - humidity
+    - wind_speed
+    - cloud_cover
+    - wind_bearing
+    - pressure
+    - precip_intensity
+    - precip_probability
+
+### FIND ###
+- platform: rest
+  resource: http://ml.internalpositioning.com/location?group=APOLOGETICAVOCET&user=ASTONE
+  value_template: '{{value_json.users.ASTONE[0].location}}'
+  method: GET
+  name: Adam's Internal location
+  scan_interval: 20
+
+- platform: mqtt_room
+  device_id: !secret happy_bubbles_tracker_id
+  name: 'Adam Indoor Position'
+  state_topic: 'happy-bubbles/presence/ha'
+
+### GOOGLE WIFI ###
+- platform: google_wifi
+  monitored_conditions:
+    - status
+    - local_ip
+    - uptime
+    - last_restart
+    - current_version
+    - new_version
+
+### LOCK TEMPLATE ###
+# - platform: template
+#   sensors:
+#     front_lock_last_action:
+#       friendly_name: 'Last Action'
+#       value_template: >- 
+#           {% if 
+#             is_state('sensor.schlage_be469nxcen_touchscreen_deadbolt_alarm_level_5_1', '1') 
+#           and 
+#             is_state('sensor.schlage_be469nxcen_touchscreen_deadbolt_access_control_5_9', '6') 
+#           and 
+#             is_state('sensor.schlage_be469nxcen_touchscreen_deadbolt_alarm_type_5_0', '19') %} 
+#                   Unlocked: User Code 1
+#           {% endif %}
+
+#           {% if 
+#             is_state('sensor.schlage_be469nxcen_touchscreen_deadbolt_alarm_level_5_1', '2') 
+#           and 
+#             is_state('sensor.schlage_be469nxcen_touchscreen_deadbolt_access_control_5_9', '6') 
+#           and 
+#             is_state('sensor.schlage_be469nxcen_touchscreen_deadbolt_alarm_type_5_0', '19') %} 
+#                   Unlocked: User Code 2
+#           {% endif %}
+
+#           {% if 
+#             is_state('sensor.schlage_be469nxcen_touchscreen_deadbolt_alarm_level_5_1', '1') 
+#           and 
+#             is_state('sensor.schlage_be469nxcen_touchscreen_deadbolt_access_control_5_9', '2') 
+#           and 
+#             is_state('sensor.schlage_be469nxcen_touchscreen_deadbolt_alarm_type_5_0', '22') %} 
+#                   Unlocked: Inside Deadbolt
+#           {% endif %}
+
+#           {% if 
+#             is_state('sensor.schlage_be469nxcen_touchscreen_deadbolt_alarm_level_5_1', '1') 
+#           and 
+#             is_state('sensor.schlage_be469nxcen_touchscreen_deadbolt_access_control_5_9', '1') 
+#           and 
+#             is_state('sensor.schlage_be469nxcen_touchscreen_deadbolt_alarm_type_5_0', '21') %} 
+#                   Locked: Inside Deadbolt
+#           {% endif %}
+
+#           {% if 
+#             is_state('sensor.schlage_be469nxcen_touchscreen_deadbolt_alarm_level_5_1', '0') 
+#           and 
+#             is_state('sensor.schlage_be469nxcen_touchscreen_deadbolt_access_control_5_9', '5') 
+#           and 
+#             is_state('sensor.schlage_be469nxcen_touchscreen_deadbolt_alarm_type_5_0', '18') %} 
+#                   Locked: Outside Keypad
+#           {% endif %}

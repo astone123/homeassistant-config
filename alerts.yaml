@@ -1,0 +1,15 @@
+door_sensor_battery:
+  name: One of the door sensor batteries are low
+  entity_id: binary_sensor.door_sensor_battery_low
+  repeat: 30
+  notifiers:
+    - adam_messenger
+
+# door_open_noone_home:
+#   name: "A door opened when no one was home!"
+#   entity_id: binary_sensor.door_open_noone_home
+#   state: 'on'
+#   repeat: 10
+#   can_acknowledge: false
+#   notifiers:
+#     - adam_messenger

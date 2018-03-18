@@ -1,0 +1,3 @@
+- platform: vizio
+  host: !secret vizio_bedroom_host
+  access_token: !secret vizio_bedroom_access_token

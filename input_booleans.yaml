@@ -1,0 +1,9 @@
+adam_sleeping:
+  name: Adam Sleeping
+  initial: off
+  icon: mdi:sleep
+
+adam_in_room:
+  name: Adam in Bedroom
+  initial: off
+  icon: mdi:account-location

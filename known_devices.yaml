@@ -1,0 +1,49 @@
+
+adam:
+  hide_if_away: true
+  mac: !secret adam_mac
+  name: Adam
+  picture: /local/adam.png
+  track: true
+  vendor: HTC Corporation
+
+dave:
+  hide_if_away: true
+  mac: !secret dave_mac
+  name: Dave
+  picture: /local/dave.jpg
+  track: true
+  vendor: Apple, Inc.
+
+wes:
+  hide_if_away: true
+  mac: !secret wes_mac
+  name: Wes
+  picture: /local/wes.jpg
+  track: true
+  vendor: Apple, Inc.
+
+ryan:
+  hide_if_away: true
+  mac: !secret ryan_mac
+  name: Ryan
+  picture: /local/ryan.jpg
+  track: true
+  vendor: Apple, Inc.
+
+bradley:
+  hide_if_away: true
+  mac: !secret bradley_mac
+  name: Bradley
+  picture: /local/brad.jpg
+  track: true
+  vendor: SAMSUNG ELECTRO-MECHANICS(THAILAND)
+
+wesiphonelan:
+  hide_if_away: false
+  icon:
+  mac: B8:C1:11:7B:AD:B1
+  name: wes-iphone.lan
+  picture:
+  track: true
+  vendor: Apple, Inc.

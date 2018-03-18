@@ -1,0 +1,56 @@
+- platform: iss
+  show_on_map: true
+
+- platform: template
+  sensors:
+    door_sensor_battery_low:
+      friendly_name: 'Door sensor battery is low'
+      value_template: >-
+       {{ states.binary_sensor.door_window_sensor_158d0001a20d43.attributes.battery_level < 10 
+       or states.binary_sensor.door_window_sensor_158d0001d685be.attributes.battery_level < 10
+       or states.binary_sensor.door_window_sensor_158d0001c1ce42.attributes.battery_level < 10
+       or states.binary_sensor.door_window_sensor_158d0001c1e6d3.attributes.battery_level < 10
+       or states.binary_sensor.door_window_sensor_158d0001ab59ea.attributes.battery_level < 10 }}
+
+- platform: template
+  sensors:
+    door_open_noone_home:
+      friendly_name: 'Door is open with no one home'
+      value_template: >-
+       {{ (is_state('binary_sensor.door_window_sensor_158d0001d685be', 'on')
+          or is_state('binary_sensor.door_window_sensor_158d0001a20d43', 'on'))
+          and is_state('binary_sensor.people_home', 'off') }}
+
+- platform: template
+  sensors:
+    people_home:
+      entity_id:
+        - device_tracker.adam
+        - device_tracker.dave
+        - device_tracker.bradley
+        - device_tracker.ryan
+        - device_tracker.wes
+      value_template: >-
+        {{ is_state('device_tracker.adam', 'home')
+           or is_state('device_tracker.dave', 'home')
+           or is_state('device_tracker.bradley', 'home')
+           or is_state('device_tracker.ryan', 'home')
+           or is_state('device_tracker.wes', 'home') }}
+
+- platform: template
+  sensors:
+    adam_using_xbox:
+      friendly_name: 'Adam is using xbox'
+      value_template: >-
+       {{ is_state_attr('media_player.vizio_smartcast', 'source', 'HDMI-1') }}
+
+- platform: template
+  sensors:
+    adam_casting:
+      friendly_name: 'Adam is casting to the TV'
+      value_template: >-
+       {{ is_state_attr('media_player.vizio_smartcast', 'source', 'CAST') }}
+           
+- platform: mqtt
+  state_topic: dummy/floorplan/sensor
+  name: Floorplan

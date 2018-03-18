@@ -1,0 +1,94 @@
+binary_sensor.motion_sensor_158d0001ddcb31:
+  friendly_name: Room Motion
+binary_sensor.cube_158d0001107d03:
+  friendly_name: Cube
+binary_sensor.floorplan:
+  custom_ui_state_card: state-card-floorplan
+  config: !include floorplan.yaml
+media_player.vizio_smartcast:
+  friendly_name: TV
+binary_sensor.door_window_sensor_158d0001ab59ea:
+  friendly_name: Downstairs Bathroom
+binary_sensor.door_window_sensor_158d0001c1ce42:
+  friendly_name: Upstairs Bathroom
+binary_sensor.door_window_sensor_158d0001c1e6d3:
+  friendly_name: Adam's Door
+binary_sensor.door_window_sensor_158d0001a20d43:
+  friendly_name: Front Door
+binary_sensor.door_window_sensor_158d0001d685be:
+  friendly_name: Sliding Door
+binary_sensor.switch_158d00012108c7:
+  friendly_name: Bedroom Button
+light.gateway_light_34ce009097ce:
+  friendly_name: Xiaomi Gateway
+script.goodnight:
+  hidden: true
+script.wakeup:
+  hidden: true
+sensor.upstairs_humidity:
+  icon: mdi:weather-windy-variant
+sensor.downstairs_humidity:
+  icon: mdi:weather-windy-variant
+media_player.roku_yn004n803894:
+  friendly_name: Living Room TV
+sensor.speedtest_ping:
+  icon: mdi:speedometer
+sensor.speedtest_download:
+  icon: mdi:speedometer
+sensor.speedtest_upload:
+  icon: mdi:speedometer
+sensor.google_wifi_status:
+  friendly_name: Google Wifi Status
+sensor.google_wifi_local_ip:
+  friendly_name: Public IP
+sensor.google_wifi_uptime:
+  friendly_name: Uptime
+sensor.google_wifi_last_restart:
+  friendly_name: Last Restart
+sensor.google_wifi_current_version:
+  friendly_name: Current Version
+sensor.google_wifi_new_version:
+  friendly_name: New Version
+switch.basement:
+  icon: mdi:lightbulb
+switch.ryans_room:
+  icon: mdi:lightbulb
+switch.swag_lighting:
+  icon: mdi:lightbulb
+switch.foyer_light:
+  icon: mdi:lightbulb
+switch.stereo_receiver:
+  icon: mdi:speaker
+switch.christmas_tree:
+  icon: mdi:pine-tree
+light.tradfri_bulb_e26_ws_opal_980lm:
+  hidden: true
+light.tradfri_bulb_e26_ws_opal_980lm_2:
+  hidden: true
+lock.schlage_be469nxcen_touchscreen_deadbolt_locked:
+  friendly_name: Front Door
+sensor.schlage_be469nxcen_touchscreen_deadbolt_access_control:
+  hidden: true
+sensor.schlage_be469nxcen_touchscreen_deadbolt_alarm_level:
+  hidden: true
+sensor.schlage_be469nxcen_touchscreen_deadbolt_alarm_type:
+  hidden: true
+sensor.schlage_be469nxcen_touchscreen_deadbolt_burglar:
+  hidden: true
+sensor.schlage_be469nxcen_touchscreen_deadbolt_power_management:
+  hidden: true
+sensor.schlage_be469nxcen_touchscreen_deadbolt_sourcenodeid:
+  hidden: true
+sensor.schlage_be469nxcen_touchscreen_deadbolt_system:
+  hidden: true
+zwave.aeotec_zw090_zstick_gen5_us:
+  hidden: true
+zwave.schlage_be469nxcen_touchscreen_deadbolt:
+  hidden: true
+sun.sun:
+  hidden: true
+sensor.dark_sky_icon:
+  hidden: true
+switch.box_fan:
+  icon: mdi:fan
+configurator.ikea_tradfri: {}

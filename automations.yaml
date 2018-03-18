@@ -1,0 +1,150 @@
+### BUTTON ###
+- alias: Goodnight Button
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d00012108c7
+      click_type: single
+  condition:
+    condition: state
+    entity_id: input_boolean.adam_sleeping
+    state: 'off'
+  action:
+    - service: script.turn_on
+      entity_id: script.goodnight
+
+- alias: Awake button
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d00012108c7
+      click_type: single
+  condition:
+    condition: state
+    entity_id: input_boolean.adam_sleeping
+    state: 'on'
+  action:
+    - service: script.turn_on
+      entity_id: script.wakeup
+
+### CUBE ###
+- alias: Cube toggle LEDs
+  trigger:
+    platform: event
+    event_type: cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d0001107d03
+      action_type: free_fall
+  action:
+    - service: light.toggle
+      entity_id: light.wall
+    - service: light.toggle
+      entity_id: light.tv_leds
+
+- alias: Cube play xbox
+  trigger:
+    platform: event
+    event_type: cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d0001107d03
+      action_type: move
+  action:
+    - service: script.turn_on
+      entity_id: script.play_xbox
+
+- alias: Cube turn off lights
+  trigger:
+    platform: event
+    event_type: cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d0001107d03
+      action_type: flip90
+  action:
+    - service: light.turn_off
+      entity_id: light.adams_room
+
+- alias: Cube turn on lights
+  trigger:
+    platform: event
+    event_type: cube_action
+    event_data:
+      entity_id: binary_sensor.cube_158d0001107d03
+      action_type: tap_twice
+  action:
+    - service: light.turn_on
+      entity_id: light.adams_room
+
+### VIZIO TV ###
+- alias: Turn on stereo when Vizio chromecast is playing something
+  trigger:
+    platform: state
+    entity_id: binary_sensor.adam_casting
+    to: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.stereo_receiver
+
+- alias: Turn off stereo when Vizio tv shuts off
+  trigger:
+    platform: state
+    entity_id: media_player.vizio_smartcast
+    to: 'off'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.stereo_receiver
+
+### MOTION LIGHTS ###
+- alias: Toggle adam's room light with motion
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001ddcb31
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001ddcb31
+      to: 'off'
+      for:
+        minutes: 5
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.adam_sleeping
+        state: 'off'
+      - condition: state
+        entity_id: binary_sensor.adam_using_xbox
+        state: 'off'
+  action:
+    service_template: >
+      {% if trigger.to_state.state == "on" and states.light.adams_room.state == "off" %}
+      homeassistant.turn_on
+      {% elif trigger.to_state.state == "off" and states.light.adams_room.state == "on" %}
+      homeassistant.turn_off
+      {% endif %}
+    entity_id: light.adams_room
+
+### ADAM IN BEDROOM ###
+- alias: Adam in room
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.adam_indoor_position
+    value_template: '{{ state.attributes.distance }}'
+    below: 40
+    for:
+      seconds: 15
+  action:
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.adam_in_room
+
+- alias: Adam not in room
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.adam_indoor_position
+    value_template: '{{ state.attributes.distance }}'
+    above: 40
+    for:
+      seconds: 15
+  action:
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.adam_in_room
